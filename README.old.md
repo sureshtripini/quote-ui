@@ -25,7 +25,7 @@ docker run -itd -p 3001:3000 sureshtripini/quote-ui
 # Docker command to build image
 docker build -f Dockerfile.prod -t sureshtripini/quote-ui-prod .
 
-# Docker command to run in local - as deamon process
+# Docker command to run in localas deamon process
 docker run -it --rm -p 8888:80 sureshtripini/quote-ui-prod
 
 
