@@ -8,6 +8,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
+        cleanWs()
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sureshtripini/quote-ui.git']]])
          }
     }
@@ -33,6 +34,8 @@ pipeline {
         sh "docker run -itd -p 3001:3000 $registry:$BUILD_NUMBER"
       }
     }
+    
+    
     
     /* stage('Remove Image') {
       steps{
