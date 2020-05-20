@@ -5,13 +5,9 @@ pipeline {
     dockerImage = ''
   }
   agent any
-  stages {
-    /*stage('Checkout') {
-      steps {
-        cleanWs()
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sureshtripini/quote-ui.git']]])
-         }
-    }*/
+ 
+ stages {
+   
     stage('Build image') {
       steps{
         script {
@@ -19,6 +15,7 @@ pipeline {
         }
       }
     }
+	
     stage('Push Image') {
       steps{
         script {
@@ -35,7 +32,7 @@ pipeline {
       }
     }
     
-     stage('Cleanup') {
+    stage('Cleanup') {
       steps{
         cleanWs()
       }

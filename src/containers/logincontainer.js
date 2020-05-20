@@ -5,6 +5,7 @@ import SalesPortal from '../components/salesportal'
 import { bindActionCreators } from 'redux';
 import loginvalidator from '../data/loginvalidator';
 import Pending from '../components/pending'
+import Axios from 'axios';
 
 class LoginContainer extends Component {
 
@@ -15,6 +16,7 @@ class LoginContainer extends Component {
 
     handleUserAuthentication = (logincredentials) => {
         this.props.loginvalidator(logincredentials);
+        
     }
 
     render() {

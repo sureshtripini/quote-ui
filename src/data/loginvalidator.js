@@ -7,7 +7,7 @@ function loginValidator(logincredentials) {
     console.log("Password Is:" + password)
     return dispath => {
         dispath(loginPending());
-        setTimeout(()=>{dispath(loginSuccess())}, 3000)
+        setTimeout(()=>{dispath(loginSuccess())}, 1000)
         //dispath(loginSuccess());
     }
 }

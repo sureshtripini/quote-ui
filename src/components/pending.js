@@ -1,5 +1,5 @@
 import React from "react";
-import CircleLoader from "react-spinners/MoonLoader";
+import FadeLoader from "react-spinners/FadeLoader";
 
 // Can be a string as well. Need to ensure each key-value pair ends with ;
 
@@ -14,11 +14,12 @@ class Pending extends React.Component {
     render() {
         return (
             <div>
-                <CircleLoader
-                    size={50}
-                    color={"#123abc"}
+                <FadeLoader
+                    size={20}
+                    color={"Green"}
                     loading={this.state.loading}
                 />
+                <h1>Please wait while we authenticating you.....</h1>
             </div>
         );
     }
