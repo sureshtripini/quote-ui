@@ -6,13 +6,13 @@ pipeline {
   }
   agent any
   stages {
-    stage('Checkout') {
+    /*stage('Checkout') {
       steps {
         cleanWs()
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sureshtripini/quote-ui.git']]])
          }
-    }
-    stage('Building image') {
+    }*/
+    stage('Build image') {
       steps{
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
@@ -32,6 +32,12 @@ pipeline {
     stage('Run Container') {
       steps{
         sh "docker run -itd -p 3001:3000 $registry:$BUILD_NUMBER"
+      }
+    }
+    
+     stage('Cleanup') {
+      steps{
+        cleanWs()
       }
     }
     
