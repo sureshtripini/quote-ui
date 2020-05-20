@@ -29,3 +29,8 @@ docker build -f Dockerfile.prod -t sureshtripini/quote-ui-prod .
 docker run -it --rm -p 8888:80 sureshtripini/quote-ui-prod
 
 
+# Issue while running docker command from Jenkins instance.
+Error:
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post 
+Fix
+sudo chmod 666 /var/run/docker.sock
