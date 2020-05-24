@@ -5,21 +5,21 @@ import Container from '@material-ui/core/Container';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import React, { Component } from 'react';
 import {testedResult, PasswordStrengthMeter} from './PasswordStrengthMeter';
+import AddressInput from 'material-ui-address-input'
 
 class register extends Component {
 
     constructor(props) {
         super(props);
-        console.log("props are:" + props);
         this.state = {
             formData: {
                 email: '',
                 password: '',
                 confirmPassword: '',
                 username: '',
-                address: ''
-            },
-            submitted: false
+                address: '',
+                addresses: []
+            }
         }
     }
 
@@ -33,6 +33,18 @@ class register extends Component {
         const { formData } = this.state;
         formData[event.target.name] = event.target.value;
         this.setState({ formData });
+    }
+
+    handleAddAddress = (address) => {
+        const { formData } = this.state;
+        formData.addresses = [...formData.addresses, address];
+        this.setState({ formData});
+    }
+
+    handleChangeAddress = addressIndex => {
+        const { formData } = this.state;
+        formData.address = addressIndex;
+        this.setState({ formData});
     }
 
     componentDidMount() {
@@ -159,17 +171,13 @@ class register extends Component {
                                 onBlur={this.handleBlurForConfirmPwd}
                                 value={formData.confirmPassword}
                             />
-                            <TextValidator
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                name="address"
-                                label="Address"
-                                id="address"
-                                onChange={this.handleChange}
+                            <AddressInput
+                                margin="dense"
+                                onAdd={this.handleAddAddress}
+                                onChange={this.handleChangeAddress}
                                 value={formData.address}
-                            />                            
+                                allAddresses={formData.addresses}
+                            />                           
                             <Button
                                 type="submit"
                                 fullWidth
