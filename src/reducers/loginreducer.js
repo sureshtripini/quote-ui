@@ -20,6 +20,7 @@ const loginreducer = (state = { loginStatus: "NONE" }, action) => {
                     loginStatus: "SUCCESS"
                 });
         case LOGIN_FAILED:
+            
             return (
                 {
                     userName: action.userName,

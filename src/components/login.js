@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import React, { Component } from 'react';
+import RegisterContainer from '../containers/registercontainer';
 
 class login extends Component {
 
@@ -20,7 +21,8 @@ class login extends Component {
                 password: ''
             },
             submitted: false,
-            isChecked: false
+            isChecked: false,
+            isNewUser: false
         }
     }
 
@@ -69,9 +71,20 @@ class login extends Component {
 
     }
 
+    handleSignup = () => {
+        this.setState({
+            isNewUser: true
+        });
+    }
 
     render() {
         const { formData } = this.state;
+        if (this.state.isNewUser) {
+            return (
+                <RegisterContainer />
+            )
+        }
+        else {
         return (
             <div>
                 <Container maxWidth="xs">
@@ -131,10 +144,10 @@ class login extends Component {
                                 <Grid item xs>
                                     <Link href="#" variant="body2">
                                         Forgot password?
-                            </Link>
+                                    </Link>
                                 </Grid>
                                 <Grid item>
-                                    <Link href="#" variant="body2">
+                                    <Link href="#" variant="body2" onClick={this.handleSignup}>
                                         {"Don't have an account? Sign Up"}
                                     </Link>
                                 </Grid>
@@ -143,7 +156,8 @@ class login extends Component {
                     </div>
                 </Container>
             </div>
-        );
+        )
+        }
     }
 }
 
